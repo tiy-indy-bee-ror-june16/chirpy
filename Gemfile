@@ -22,6 +22,7 @@ gem 'puma', '~> 3.0'
 
  gem 'socialization'
  gem 'active_model_serializers', '~> 0.10.0'
+ gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
