@@ -29,6 +29,10 @@ class User < ApplicationRecord
     self[:avatar] ? self[:avatar] : "https://robohash.org/sdgerhre.png"
   end
 
+  def self.find_for_auth(value)
+    find_by(username: value) || find_by(email: value)
+  end
+
 
   private
 

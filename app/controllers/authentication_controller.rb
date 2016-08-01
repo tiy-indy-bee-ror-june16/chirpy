@@ -1,7 +1,7 @@
 class AuthenticationController < ApplicationController
 
   def create
-    if params[:username] && @user = User.find_by(username: params[:username])
+    if params[:username] && @user = User.find_for_auth(params[:username])
       if @user.authenticate(params[:password])
         render json: @user, serializer: UserExpandedSerializer
       else
