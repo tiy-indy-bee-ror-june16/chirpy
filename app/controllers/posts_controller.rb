@@ -1,12 +1,18 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
-  before_action :require_user
+  before_action :require_user, except: [:index]
 
   # GET /posts
   def index
-    @posts = current_user.chirps
+    if current_user
+      @posts = current_user.chirps
 
-    render json: @posts, scope: current_user, scope_name: :current_user
+      render json: @posts, scope: current_user, scope_name: :current_user
+    else
+      @posts = Post.all
+
+      render json: @posts, each_serializer: UnauthedPostsSerializer
+    end
   end
 
   # GET /posts/1
