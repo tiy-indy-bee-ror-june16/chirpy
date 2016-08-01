@@ -25,6 +25,10 @@ class User < ApplicationRecord
     posts.count
   end
 
+  def avatar
+    self[:avatar] ? self[:avatar] : "https://robohash.org/sdgerhre.png"
+  end
+
 
   private
 
